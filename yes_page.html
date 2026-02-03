@@ -7,7 +7,26 @@
     <link rel="stylesheet" href="./yes_style.css" />
   </head>
   <body>
-    <audio src="aud1.mp3" autoplay loop hidden></audio>
+<audio id="bg-music" src="aud1.mp3" loop></audio>
+
+<script>
+  window.addEventListener("load", () => {
+    if (sessionStorage.getItem("playMusic") === "true") {
+      const audio = document.getElementById("bg-music");
+
+      audio.play().catch(() => {
+        // fallback for strict browsers (mobile)
+        document.body.addEventListener(
+          "click",
+          () => audio.play(),
+          { once: true }
+        );
+      });
+
+      sessionStorage.removeItem("playMusic");
+    }
+  });
+</script>
     <div class="container">
       <h1 class="header_text">Knew you would say yes!</h1>
       <div class="gif_container">

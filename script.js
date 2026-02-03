@@ -48,5 +48,6 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
+  sessionStorage.setItem("playMusic", "true");
   window.location.href = "yes_page.html";
 }
